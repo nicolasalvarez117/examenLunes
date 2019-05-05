@@ -203,6 +203,74 @@ void getSexo(char *msg,char *msgError,char* resultado)
     }
 
 }
+/**
+  *\brief Toma una DNI como caracteres numericos ingresada por el usuario.
+  *\param Recibe un mensaje, mensaje para error, minimo cantidad de caracteres, y un maximo.
+  *\param Cantidad de reintentos por error, y un puntero a resultado final.
+  *\return Un entero para la verificacion de exito o de error en el programa.
+*/
+int getDni(    char* msg,
+                char* msgError,
+                int minimo,
+                int maximo,
+                char* resultado)
+{
+    int retorno = -1;
+    int flag = 1;
+    char bufferStr[4096];
+    if( msg != NULL &&
+        msgError != NULL &&
+        minimo < maximo &&
+        resultado != NULL)
+    {
+      do
+      {
+        printf(msg);
+        if(!getString(minimo,maximo,bufferStr))
+        {
+            if(isValidNumber(bufferStr))
+            {
+                if(isValidDni(bufferStr))
+                {
+                    strncpy(resultado,bufferStr,maximo);
+                    flag = 0;
+                    retorno = 0;
+                }
+                else
+                {
+                    printf(msgError);
+                }
+
+            }
+            else
+            {
+                printf(msgError);
+            }
+        }
+        else
+        {
+            printf(msgError);
+        }
+    }while(flag);
+    }
+    return retorno;
+}
+/**
+  *\brief Valida si el array de DNI es completo.
+  *\param Recibe el array con la cadena de numerica.
+  *\return TRUE o FALSE.
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+int isValidDni(char str[])
+{
+    int retorno = FALSE;
+    if(!(str[7] == '\0' || str[7] == NULL))
+    {
+        retorno = TRUE;
+    }
+    return retorno;
+}
+
 
 
 

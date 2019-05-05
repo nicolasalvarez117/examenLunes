@@ -5,6 +5,8 @@ void getNumber(char *msg,char *msgError,int desde,int hasta,int minimo,int maxim
 int isValidNumber(char strNumber[]);
 int isValidRange(int desde,int hasta,int numero);
 void getSexo(char *msg,char *msgError,char* resultado);
+int getDni(char* msg,char* msgError,int minimo,int maximo,char* resultado);
+int isValidDni(char str[]);
 
 
 
