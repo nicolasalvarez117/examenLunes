@@ -31,6 +31,63 @@ int buscarPrimerOcurrencia(TIPO1 str[],int cantidadElementos,int valor)
     return -1;
 }
 
+/**
+  *\brief busca una igualdad entre dos datos pasados por parametro.
+  *\param datos de la estructura , la cantidad de elementos del array estructura y el valor que queremos encontrar.
+  *\return la posicion del valor encontrado, en caso de no encontrar el valor, retorna -1.
+**/
+int buscarPrimerOcurrencia2(TIPO1 str[],int cantidadElementos,int valor)
+{
+    int i;
+    for(i=0;i < cantidadElementos; i++)
+    {
+        if(str[i].id == valor)
+        {
+            return i;
+            break;
+        }
+    }
+    return -1;
+}
+
+/**
+  *\brief busca una igualdad entre dos datos pasados por parametro.
+  *\param datos de la estructura , la cantidad de elementos del array estructura y el valor que queremos encontrar.
+  *\return la posicion del valor encontrado, en caso de no encontrar el valor, retorna -1.
+**/
+int buscarPrimerOcurrencia3(TIPO3 str[],int cantidadElementos,int valor)
+{
+    int i;
+    for(i=0;i < cantidadElementos; i++)
+    {
+        if(str[i].estado == valor)
+        {
+            return i;
+            break;
+        }
+    }
+    return -1;
+}
+
+/**
+  *\brief busca una igualdad entre dos datos pasados por parametro.
+  *\param datos de la estructura , la cantidad de elementos del array estructura y el valor que queremos encontrar.
+  *\return la posicion del valor encontrado, en caso de no encontrar el valor, retorna -1.
+**/
+int buscarPrimerOcurrencia4(TIPO3 str[],int cantidadElementos,int valor)
+{
+    int i;
+    for(i=0;i < cantidadElementos; i++)
+    {
+        if(str[i].idPublicacion == valor && str[i].estado != -1)
+        {
+            return i;
+            break;
+        }
+    }
+    return -1;
+}
+
 //------------------------INICIALIZAR DATOS-------------------------------------------
 /**
   *\brief inicializa los valores unicos  con LIBRE(-1).
@@ -74,7 +131,7 @@ void menu2(int *resultado)
 }
 
 //---------------------------------ALTA BAJA Y MODIFICACION-----------------------------------
-void Alta(TIPO1 str[],int cantidadElementos)
+void alta(TIPO1 str[],int cantidadElementos,int *idIncremental)
 {
     int espacioLibre;
     char auxiliar[51];
@@ -88,6 +145,7 @@ void Alta(TIPO1 str[],int cantidadElementos)
 
         //str[espacioLibre].id = ++str[espacioLibre].id;  ID,AUTO INCREMENTAL O LEGAJO
         str[espacioLibre].estado = 1;
+        idIncremental++;
     }
     else
     {
@@ -153,6 +211,70 @@ void modificacion(TIPO1 str[],int cantidadElementos)
         printf("no hay datos cargados");
     }
 }
+
+void cargarDATO3(TIPO1 str[],TIPO2 str2[],TIPO3 str3[],int cantidadElementos,int cantidadElementos2)
+{
+    int espacioLibre;
+    char auxiliar[51];
+    espacioLibre = buscarPrimerOcurrencia3(str3,cantidadElementos*cantidadElementos2,-1);
+
+    if(espacioLibre != -1)
+    {
+
+    }
+    else
+    {
+        printf("No encontro lugar");
+    }
+}
+
+/**
+  *\brief Da el alta , pidiendo al usuario todos los datos necesarios.
+  *\param El array Y la cantidad de elementos del array.
+**/
+void baja2(TIPO1 str3[],TIPO3 str[],TIPO2 str2[],int cantidadElementos,int cantidadElementos2)
+{
+   int espacioLibre;
+   int i,j;
+   char auxDato[51];
+   espacioLibre = buscarPrimerOcurrencia3(str,cantidadElementos*cantidadElementos2,1);
+   if(espacioLibre != -1)
+   {
+    listadoMuchosAmuchos(str3,str,str2,cantidadElementos,cantidadElementos2);
+    getNumber("\nque id de aviso desea : ","error",1,cantidadElementos,1,cantidadElementos,auxDato);
+    espacioLibre = buscarPrimerOcurrencia4(str,5,atoi(auxDato));
+
+        if(espacioLibre != -1)
+        {
+            str[espacioLibre].estado = 0;
+            str3[str[espacioLibre].idClientes-1].estadoPublicacion = 0;
+            for(i=0;i<cantidadElementos2;i++)
+            {
+                if(str[espacioLibre].idClientes-1 == str[i].idClientes)
+                {
+                   for(j=0;j<cantidadElementos2;j++)
+                   {
+                       if(str[i].idClientes == str2[j].idRubro)
+                       {
+                           str2[j].estadoRubro = 0;
+                           break;
+                       }
+                   }
+                   break;
+                }
+            }
+            printf("\nAviso pausado");
+        }
+        else
+        {
+            printf("\nEl dato no existe");
+        }
+   }
+   else
+   {
+       printf("\nno hay datos cargados");
+   }
+}
 //-----------------------------LISTAR DATOS POR PANTALLA---------------------------------------
 
 void mostrarLista(TIPO1 str[],int cantidadElementos,int valorOcupado)
@@ -163,6 +285,18 @@ void mostrarLista(TIPO1 str[],int cantidadElementos,int valorOcupado)
         if(str[i].estado != -1)
         {
            printf("%d %s %s %s ",str[i].id,str[i].dni,str[i].nombre,str[i].apellido);
+        }
+    }
+}
+
+void mostrarLista2(TIPO2 str[],int cantidadElementos)
+{
+    int i;
+    for(i=0; i<cantidadElementos; i++)
+    {
+        if(str[i].idRubro != -1)
+        {
+           printf("\n%d %s",str[i].idRubro,str[i].descripcion);
         }
     }
 }
@@ -190,5 +324,43 @@ void listadoMuchosAmuchos ( TIPO1 str[], TIPO2 str2[], TIPO3 str3[], int cantida
         }
   }
 }
+//---------------------harcodear datos--------------------------------
+/**
+  *\brief Simula una carga de datos para la prueba del programa.
+  *\param el array donde cargar los datos.
+**/
+void hardcodearDATO1(TIPO1 str[])
+{
+    int i;
+    int id[]={1,2,3,4,5};
+    char nombres[][50]={"Maria","Pedro","Jose","Pedro","Pablo"};
+    char apellidos[][50] ={"gonzales","alvarez","rodriguez","avila","urti"};
+    int estado[5] = {1,1,1,1,1};
 
+    for(i=0; i<5; i++)
+    {
+        str[i].id = id[i];
+        str[i].estado = estado[i];
+        strncpy(str[i].nombre,nombres[i],50);
+        strncpy(str[i].apellido,apellidos[i],50);
+    }
+}
+/**
+  *\brief Simula una carga de datos para la prueba del programa.
+  *\param el array donde cargar los datos.
+**/
+void hardcodearDATO2(TIPO2 str[])
+{
+    int i;
+    int id[]={1,2,3,4,5};
+    char descripcion[][50] ={"gonzales","alvarez","rodriguez","avila","urti"};
+    int estado[5] = {1,1,1,1,1};
+
+    for(i=0; i<5; i++)
+    {
+        str[i].id = id[i];
+        str[i].estado = estado[i];
+        strncpy(str[i].descripcion,descripcion[i],50);
+    }
+}
 

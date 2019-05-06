@@ -11,17 +11,19 @@
 
 int main()
 {
-    TIPO1 arrayDATO[CANTIDAD];
+    TIPO1 arrayDATO1[CANTIDAD];
     TIPO2 arrayDATO2[CANTIDAD2];
     TIPO3 arrayDATO3[CANTIDAD*CANTIDAD2];
 
-    inicializarArray(arrayDATO,CANTIDAD);
+    inicializarArray(arrayDATO1,CANTIDAD);
     inicializarArray2(arrayDATO2,CANTIDAD2);
 
-    hardcodearDatosDATO(arrayDATO);
-    hardcodearDatosDATO2(arrayDATO2);
+    hardcodearDATO1(arrayDATO1);
+    hardcodearDATO2(arrayDATO2);
 
     int opcion,opcion2;
+    int idIncremental = 6;
+    char auxiliar[51];
 
     do
     {
@@ -35,28 +37,28 @@ int main()
                 switch(opcion2)
                 {
                 case 1:
-                    Alta(arrayDATO,CANTIDAD);
+                    alta(arrayDATO1,CANTIDAD,&idIncremental);
                     break;
                 case 2:
                     baja(arrayDATO,CANTIDAD);
                     break;
                 case 3:
-                    modificacion(arrayDATO,CANTIDAD);
+                    modificacion(arrayDATO1,CANTIDAD);
                     break;
                 }
             }while(opcion2 != 4);
             break; /**FINALIZA EL CASE 1 PRINCIPAL.**/
-        case 2:
+        /*case 2:
             do
             {
                 menu3(&opcion2);
                 switch(opcion2)
                 {
                 case 1:
-                    Alta2(arrayDATO2,CANTIDAD2);
+                    cargarDATO3();
                     break;
                 case 2:
-                    baja2(arrayDATO2,CANTIDAD2);
+                    baja2();
                     break;
                 case 3:
                     modificacion2(arrayDATO2,CANTIDAD2);
