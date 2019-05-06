@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "imput.h"
-#include "empleados.h"
-#include "ordenamiento.h"
 #include <string.h>
 #include <ctype.h>
+#include "imput.h"
+#include "lib.h"
 
 #define FALSE 0
 #define TRUE 1
+
 
 /**
   *\brief toma un string del usuario con un maximo y minimo de caracteres.
@@ -267,6 +267,80 @@ int isValidDni(char str[])
     if(!(str[7] == '\0' || str[7] == NULL))
     {
         retorno = TRUE;
+    }
+    return retorno;
+}
+
+//////////////////////////////////////////////////////////////////////
+int getCuit(    char* msg,
+                char* msgError,
+                char* msgError2,
+                char* msgError3,
+                int minimo,
+                int maximo,
+                char* resultado)
+{
+    int retorno = -1;
+    char bufferStr[4096];
+    if( msg != NULL &&
+        msgError != NULL &&
+        msgError2 != NULL &&
+        msgError3 != NULL &&
+        minimo < maximo &&
+        resultado != NULL)
+    {
+        printf("%s",msg);
+        if(!getString(minimo,maximo,bufferStr))
+        {
+            if(isValidCuitA(bufferStr))
+            {
+                if(isValidCuitB(bufferStr))
+                {
+                    strncpy(resultado,bufferStr,maximo);
+                    retorno = 0;
+                }
+                else
+                {
+                    printf("%s",msgError2);
+                }
+            }
+            else
+            {
+                printf("%s",msgError);
+            }
+        }else
+        {
+            printf("%s",msgError3);
+        }
+    }
+    return retorno;
+}
+////////////////////////////////////////////////
+int isValidCuitA(char str[])
+{
+
+    int retorno = TRUE;
+    int i=0;
+    while(str[i] != '\0')
+    {
+        if((str[i] < '0' || str[i] > '9') &&  (str[i] != '-'))
+        {
+            retorno = FALSE;
+        }
+        i++;
+    }
+    return retorno;
+}
+//////////////////////////////////////////////////
+int isValidCuitB(char str[])
+{
+    int retorno = FALSE;
+    if(!(str[12] == '\0' || str[12] == NULL))
+    {
+        if(str[2] =='-' && str[11]=='-')
+        {
+            retorno = TRUE;
+        }
     }
     return retorno;
 }
