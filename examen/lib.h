@@ -52,11 +52,11 @@ void menu(int *resultado);
 void menu3(int *resultado);
 void menu4(int *resultado);
 //---------------------------------ALTA BAJA Y MODIFICACION-----------------------------------
-void Alta(t_Clientes str[],int cantidadElementos,int *idIncremental);
+void alta(t_Clientes str[],int cantidadElementos,int *idIncremental);
 void baja(t_Clientes str[],int cantidadElementos);
 void modificacion(t_Clientes str[],int cantidadElementos);
 
-void Alta2(t_Publicacion str[],t_Publicaciones str2[],t_Clientes str3[],int cantidadElementos);
+void alta2(t_Publicacion str[],t_Publicaciones str2[],t_Clientes str3[],int cantidadElementos);
 void baja2(t_Clientes str3[],t_Publicacion str[],t_Publicaciones str2[],int cantidadElementos,int cantidadElementos2);
 void modificacion2(t_Clientes str3[],t_Publicacion str[],t_Publicaciones str2[],int cantidadElementos,int cantidadElementos2);
 //-----------------------------LISTAR DATOS POR PANTALLA---------------------------------------

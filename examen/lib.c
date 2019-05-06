@@ -168,7 +168,7 @@ void menu4(int *resultado)
 }
 
 //---------------------------------ALTA BAJA Y MODIFICACION-----------------------------------
-void Alta(t_Clientes str[],int cantidadElementos,int *idIncremental)
+void alta(t_Clientes str[],int cantidadElementos,int *idIncremental)
 {
     int espacioLibre;
     char auxiliar[51];
@@ -200,7 +200,7 @@ void baja(t_Clientes str[],int cantidadElementos)
    if(espacioLibre != -1)
    {
     mostrarLista(str,cantidadElementos);
-    getNumber("\nque id desea dar de baja","error",1,cantidadElementos,1,cantidadElementos,auxDato);
+    getNumber("\nque id desea dar de baja","error",1,1000,1,cantidadElementos,auxDato);
     espacioLibre = buscarPrimerOcurrencia2(str,5,atoi(auxDato));
 
         if(espacioLibre != -1 && str[espacioLibre].estado != -1)
@@ -230,7 +230,7 @@ void modificacion(t_Clientes str[],int cantidadElementos)
     if(espacioLibre != -1)
     {
         mostrarLista(str,cantidadElementos);
-        getNumber("\ningrese la id a modificar","error",1,cantidadElementos,1,cantidadElementos,auxDato);
+        getNumber("\ningrese la id a modificar: ","error",1,1000,1,cantidadElementos,auxDato);
         espacioLibre = buscarPrimerOcurrencia2(str,5,atoi(auxDato));
         if(espacioLibre != -1)
         {
@@ -248,7 +248,7 @@ void modificacion(t_Clientes str[],int cantidadElementos)
     }
 }
 //---------------------------------ALTA BAJA MODIFICACION-----------------------------------
-void Alta2(t_Publicacion str[],t_Publicaciones str2[],t_Clientes str3[],int cantidadElementos)
+void alta2(t_Publicacion str[],t_Publicaciones str2[],t_Clientes str3[],int cantidadElementos)
 {
     int espacioLibre;
     char auxiliar[51];
@@ -260,7 +260,14 @@ void Alta2(t_Publicacion str[],t_Publicaciones str2[],t_Clientes str3[],int cant
         getNumber("\nSelecione la ID del aviso: ","error",1,cantidadElementos,1,2,auxiliar);
         str[espacioLibre].idPublicacion = atoi(auxiliar);
         mostrarLista(str3,cantidadElementos);
-        getNumber("\nSelecione la ID del cliente: ","error",1,cantidadElementos,1,2,auxiliar);
+        getNumber("\nSelecione la ID del cliente: ","error",1,1000,1,2,auxiliar);
+        espacioLibre = buscarPrimerOcurrencia2(str3,cantidadElementos,atoi(auxiliar));
+        while(espacioLibre == -1)
+        {
+            printf("\nDato inexistente, reingrese el dato");
+            getNumber("\nSelecione la ID del cliente: ","error",1,1000,1,2,auxiliar);
+            espacioLibre = buscarPrimerOcurrencia2(str3,cantidadElementos,atoi(auxiliar));
+        }
         str[espacioLibre].idClientes = atoi(auxiliar);
         str[espacioLibre].estado = 1;
 
@@ -476,7 +483,7 @@ void hardcodearDatosDATO2(t_Publicaciones str[])
 {
     int i;
     int id[]={1,2,3,4,5};
-    char descripcion[][50]={"VENDO AUTO","VENDO MOTO","SE NECESITA EMPLEADO","LIMPIO CASAS","VENDO CELULAR"};
+    char descripcion[][50]={"Productos","Politica","Empleos","Peliculas","Deportes"};
 
 
     for(i=0; i<5; i++)

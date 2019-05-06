@@ -27,3 +27,31 @@
 	"imput.h"
 	"lib.h"
 
+1557095702 source:c:\users\walkinotebook\desktop\utn examen lunes\examenlunes-master\examen\imput.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"imput.h"
+	"lib.h"
+
+1557095702 c:\users\walkinotebook\desktop\utn examen lunes\examenlunes-master\examen\imput.h
+
+1557152931 c:\users\walkinotebook\desktop\utn examen lunes\examenlunes-master\examen\lib.h
+
+1557152931 source:c:\users\walkinotebook\desktop\utn examen lunes\examenlunes-master\examen\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"imput.h"
+	"lib.h"
+
+1557152943 source:c:\users\walkinotebook\desktop\utn examen lunes\examenlunes-master\examen\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"imput.h"
+	"lib.h"
+
