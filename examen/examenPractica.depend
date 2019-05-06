@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1557087594 source:c:\users\administrador\desktop\utn\examenpractica\imput.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"imput.h"
+	"lib.h"
+
+1557087596 c:\users\administrador\desktop\utn\examenpractica\imput.h
+
+1557109692 c:\users\administrador\desktop\utn\examenpractica\lib.h
+
+1557109842 source:c:\users\administrador\desktop\utn\examenpractica\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"imput.h"
+	"lib.h"
+
+1557109842 source:c:\users\administrador\desktop\utn\examenpractica\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"imput.h"
+	"lib.h"
+
